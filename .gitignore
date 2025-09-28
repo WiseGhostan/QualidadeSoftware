@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# Venv
+venv/
+
 # Object files
 *.o
 *.ko
