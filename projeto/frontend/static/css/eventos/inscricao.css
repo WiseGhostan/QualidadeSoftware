@@ -1,0 +1,34 @@
+.inscricao-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.inscricao-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.inscricao-card-header {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.inscricao-card-title {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.inscricao-card-body {
+    padding: 20px 10px;
+}
+
+.inscricao-card-body p {
+    margin-bottom: 10px;
+    color: #444;
+}

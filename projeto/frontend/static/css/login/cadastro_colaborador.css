@@ -1,0 +1,163 @@
+body {
+  background: linear-gradient(to right, #f0f4ff, #dfefff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.cadastro-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.cadastro-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 35px 25px;
+  width: 100%;
+  max-width: 500px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.cadastro-container h2 {
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #003366;
+  text-align: center;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group input,
+.form-group select {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  margin-top: 5px;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 5px rgba(0, 102, 204, 0.2);
+  outline: none;
+}
+
+.form-group .radio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-group .radio label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  transition: border 0.2s;
+}
+
+.form-group .radio input[type="radio"] {
+  margin: 0;
+}
+
+.form-group .radio label:hover {
+  border-color: #0066cc;
+}
+
+.btn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #004c99;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.cadastro-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* NOVO: Alinha corretamente as opções de tipo de usuário (radio buttons) */
+#id_tipo {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#id_tipo li {
+  margin: 0;
+}
+
+#id_tipo li label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espaço entre a bolinha e o texto */
+  background-color: #f8f9fa;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border 0.2s ease;
+}
+
+#id_tipo li label:hover {
+  border-color: #0066cc;
+}
+
+#id_tipo input[type="radio"] {
+  accent-color: #0066cc;
+  margin: 0;
+  width: 18px;
+  height: 18px;
+}

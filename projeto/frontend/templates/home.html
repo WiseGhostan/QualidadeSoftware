@@ -1,0 +1,48 @@
+{% extends "base_turista.html" %}
+{% load static %}
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+  <h2>Bem-vindo ao DF Turismos</h2>
+  <p>Explore Brasília com nosso app moderno!</p>
+</div>
+
+<div class="card-container d-flex flex-wrap justify-content-center gap-3">
+  <div class="card p-3 text-center" style="width: 16rem;">
+    <div class="card-icon display-4">🏞️</div>
+    <h3 class="h5 mt-2">Parques</h3>
+    <p>Conheça os melhores parques do DF.</p>
+    <a href="{% url 'parques:lista' %}" class="btn btn-primary">Ver mais</a>
+  </div>
+
+  <div class="card p-3 text-center" style="width: 16rem;">
+    <div class="card-icon display-4">🎭</div>
+    <h3 class="h5 mt-2">Cultura</h3>
+    <p>Descubra eventos culturais imperdíveis.</p>
+    <a href="{% url 'eventos:lista' %}" class="btn btn-primary">Ver mais</a>
+  </div>
+
+  <div class="card p-3 text-center" style="width: 16rem;">
+    <div class="card-icon display-4">🛒</div>
+    <h3 class="h5 mt-2">Feiras</h3>
+    <p>Explore feiras típicas e locais únicos.</p>
+    <a href="{% url 'feiras:lista' %}" class="btn btn-primary">Ver mais</a>
+  </div>
+
+  <div class="card p-3 text-center" style="width: 16rem;">
+    <div class="card-icon display-4">🗺️</div>
+    <h3 class="h5 mt-2">Mapa da Cidade</h3>
+    <p>Veja os Pontos Turísticos de Brasília.</p>
+    <a href="{% url 'mapa:mapa' %}" class="btn btn-primary">Ver mais</a>
+  </div>
+
+  <div class="card p-3 text-center" style="width: 16rem;">
+    <div class="card-icon display-4">🚨</div>
+    <h3 class="h5 mt-2">Contatos de Emergência</h3>
+    <p>Veja a lista de emergência da cidade.</p>
+    <a href="{% url 'emergencia:emergencia' %}" class="btn btn-primary">Ver mais</a>
+  </div>
+</div>
+{% endblock %}
+

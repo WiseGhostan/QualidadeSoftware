@@ -1,0 +1,112 @@
+{% load static %} 
+<header>
+  {% if messages %}
+    <div id="logoutMessage" style="
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 500;
+      z-index: 10000;
+    ">
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+    <script>
+      setTimeout(() => {
+        const msg = document.getElementById("logoutMessage");
+        if (msg) msg.style.display = "none";
+      }, 5000);
+    </script>
+  {% endif %}
+
+  <div class="header-content" style="display: flex; align-items: center; width: 100%;">
+
+    <div class="logo-container" style="flex-shrink: 0;">
+      {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+          <a href="{% url 'login:painel_admin' %}" class="logo-link">
+        {% else %}
+          <a href="{% url 'login:espaco_colaborador' %}" class="logo-link">
+        {% endif %}
+      {% else %}
+        <a href="{% url 'login:login' %}" class="logo-link">
+      {% endif %}
+        <img src="{% static 'images/catedral.png' %}" alt="Logo DF Turismo" class="logo-icon" />
+        <h1 style="margin: 0; font-size: 1.5rem; color: #ffffff;">DF Turismos</h1>
+      </a>
+    </div>
+
+    <div style="flex-grow: 1;"></div>
+
+    <div style="position: relative; flex-shrink: 0;">
+      {% if user.is_authenticated %}
+        <a
+          href="#"
+          id="userMenuLink"
+          onclick="toggleDropdown(event)"
+          style="
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+          "
+        >
+          Olá, {{ user.first_name|default:user.username }} ▼
+        </a>
+
+        <div
+          id="userDropdown"
+          style="
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 10px;
+            min-width: 150px;
+            z-index: 9999;
+          "
+        >
+          <a href="{% url 'login:perfil' %}" style="display: block; padding: 6px 10px; color: black; text-decoration: none;">Meu Perfil</a>
+          <a href="{% url 'login:alterar_senha' %}" style="display: block; padding: 6px 10px; color: black; text-decoration: none;">Alterar Senha</a>
+          <hr style="margin: 5px 0" />
+          <form method="post" action="{% url 'login:logout' %}" style="margin: 0;">
+            {% csrf_token %}
+            <button type="submit" style="display: block; padding: 6px 10px; color: black; background: none; border: none; width: 100%; text-align: left; cursor: pointer; font: inherit;">Sair</button>
+          </form>
+        </div>
+
+        <script>
+          function toggleDropdown(e) {
+            e.preventDefault();
+            const dropdown = document.getElementById("userDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+          }
+
+          document.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("userDropdown");
+            const userMenuLink = document.getElementById("userMenuLink");
+            if (!userMenuLink.contains(event.target) && !dropdown.contains(event.target)) {
+              dropdown.style.display = "none";
+            }
+          });
+        </script>
+      {% else %}
+        <a href="{% url 'login:login' %}">
+          <img src="{% static 'images/login.png' %}" alt="Login" style="height: 32px; vertical-align: middle" />
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+
+

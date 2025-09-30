@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cadastrar Parque{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Cadastrar Parque</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'parques:gerenciar_parques' %}" class="btn btn-secondary">Voltar</a>
+  </form>
+
+  
+  
+</div>
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cadastrar/Editar Feira{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/feiras/form_feira.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+  <h2>Cadastrar/Editar Feira</h2>
+  <form method="post" class="feira-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'feiras:feiras' %}" class="btn btn-secondary">Voltar</a>
+  </form>
+</div>
+{% endblock %}
+

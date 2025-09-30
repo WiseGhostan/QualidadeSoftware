@@ -1,0 +1,58 @@
+{% extends "turistas/base_turistas.html" %}
+
+{% block title %}Detalhes do Turista{% endblock %}
+
+{% block content %}
+    <section class="card-detail">
+        <h2><i class="fas fa-user-circle"></i> Detalhes do Turista</h2>
+        
+        <div class="detail-grid">
+            <div class="detail-group">
+                <label>Nome Completo:</label>
+                <p>{{ turista.nome_completo }}</p>
+            </div>
+            
+            <div class="detail-group">
+                <label>Email:</label>
+                <p>{{ turista.email }}</p>
+            </div>
+            
+            <div class="detail-group">
+                <label>Telefone:</label>
+                <p>{{ turista.telefone }}</p>
+            </div>
+            
+            <div class="detail-group">
+                <label>Data de Nascimento:</label>
+                <p>{{ turista.data_nascimento|date:"d/m/Y" }}</p>
+            </div>
+            
+            <div class="detail-group">
+                <label>Cidade de Origem:</label>
+                <p>{{ turista.cidade_origem }}</p>
+            </div>
+            
+            <div class="detail-group">
+                <label>Data da Visita:</label>
+                <p>{{ turista.data_visita|date:"d/m/Y" }}</p>
+            </div>
+            
+            <div class="detail-group full-width">
+                <label>Interesses:</label>
+                <p>{{ turista.interesses|linebreaks }}</p>
+            </div>
+        </div>
+
+        <div class="detail-actions">
+            <a href="{% url 'turistas:editar' turista.pk %}" class="btn btn-edit">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+            <a href="{% url 'turistas:excluir' turista.pk %}" class="btn btn-delete">
+                <i class="fas fa-trash"></i> Excluir
+            </a>
+            <a href="{% url 'turistas:lista' %}" class="btn">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </section>
+{% endblock %}

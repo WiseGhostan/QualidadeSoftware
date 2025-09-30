@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Gerenciar Parques</h2>
+
+<a href="{% url 'parques:cadastrar_parque' %}" class="btn btn-success mb-3">
+    Cadastrar Novo Parque
+</a>
+
+<h3>Parques Cadastrados</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parque in parques %}
+        <tr>
+            <td>{{ parque.nome }}</td>
+            <td>{{ parque.endereco }}</td>
+            <td>
+                <a href="{% url 'parques:editar_parque' parque.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'parques:excluir_parque' parque.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este parque?');">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum parque cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

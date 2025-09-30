@@ -1,0 +1,60 @@
+{% extends "base_turista.html" %}
+{% load static %}
+
+{% block title %}
+Lista de Eventos - DF Turismos
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/eventos/eventos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="eventos-container">
+  <h2 class="my-4"><i class="fas fa-calendar-alt"></i> Eventos Disponíveis</h2>
+  <a href="{% url 'eventos:calendario' %}" class="btn btn-secondary">
+    <i class="fas fa-calendar"></i> Ver Calendário
+  </a>
+</div>
+
+{% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="eventos-grid">
+  {% for evento in eventos %}
+  <div class="evento-card">
+    <div class="evento-card-header">
+      <h5>{{ evento.nome }}</h5>
+    </div>
+    <div class="evento-card-body">
+      <p>
+        <i class="fas fa-map-marker-alt"></i> {{ evento.local }}<br />
+        <i class="fas fa-clock"></i> {{ evento.data|date:"d/m/Y H:i" }}
+      </p>
+      <p>{{ evento.descricao|truncatechars:150 }}</p>
+    </div>
+    <div class="evento-card-footer">
+      <a href="{% url 'eventos:detalhe' evento.pk %}" class="btn btn-sm btn-info">
+        <i class="fas fa-info-circle"></i> Detalhes
+      </a>
+      <a href="{% url 'eventos:inscricao' evento.pk %}" class="btn btn-sm btn-success">
+        <i class="fas fa-user-plus"></i> Inscrever-se
+      </a>
+      <a href="{% url 'eventos:excluir' evento.pk %}" class="btn btn-sm btn-danger">
+        <i class="fas fa-trash"></i> Excluir
+      </a>
+    </div>
+  </div>
+  {% empty %}
+  <div class="alert alert-info">Nenhum evento cadastrado no momento.</div>
+  {% endfor %}
+</div>
+{% endblock %}

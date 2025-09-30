@@ -1,0 +1,107 @@
+
+.form-wrapper {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.form-wrapper h2 {
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #3651aa;
+}
+
+.feira-form p {
+  margin-bottom: 1.2rem;
+}
+
+.feira-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #3651aa;
+}
+
+.feira-form input[type="text"],
+.feira-form input[type="number"],
+.feira-form input[type="email"],
+.feira-form select,
+.feira-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid #ced4da;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.feira-form input[type="text"]:focus,
+.feira-form input[type="number"]:focus,
+.feira-form input[type="email"]:focus,
+.feira-form select:focus,
+.feira-form textarea:focus {
+  border-color: #198754;
+  outline: none;
+  box-shadow: 0 0 5px rgba(25, 135, 84, 0.5);
+}
+
+.feira-form .btn {
+  min-width: 120px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.feira-form .btn-primary {
+  background-color: #198754;
+  border: none;
+  color: #fff;
+  margin-right: 1rem;
+}
+
+.feira-form .btn-primary:hover {
+  background-color: #146c43;
+}
+
+.feira-form .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: #fff;
+  text-decoration: none;
+  line-height: 2.1;
+}
+
+.feira-form .btn-secondary:hover {
+  background-color: #5a6268;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .form-wrapper {
+    padding: 20px 25px;
+    margin: 20px;
+  }
+
+  .feira-form .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .feira-form .btn-primary {
+    margin-right: 0;
+  }
+}
+

@@ -1,0 +1,102 @@
+{% extends "base_turista.html" %}
+{% load static %}
+
+{% block title %}Calendário de Eventos - DF Turismos{% endblock %}
+
+{% block content %}
+<div class="container-calendario">
+    <h2 class="my-4 text-center">
+        <i class="fas fa-calendar"></i> Calendário de Eventos
+    </h2>
+
+    <h4 class="text-center mb-4">
+        {{ mes_atual|date:"F \\d\\e Y" }}
+    </h4>
+
+    <div class="card mb-4">
+        <div class="card-body">
+
+            <div class="filter-container mb-4">
+                <h5 class="mb-2">Filtrar por tipo:</h5>
+                <div class="btn-group" role="group">
+                    <a href="?" class="btn btn-outline-secondary {% if not tipo_selecionado %}active{% endif %}">Todos</a>
+                    {% for tipo in tipos_evento %}
+                        <a href="?tipo={{ tipo.0 }}" class="btn btn-outline-secondary {% if tipo_selecionado == tipo.0 %}active{% endif %}">
+                            {{ tipo.1 }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered calendar-table text-center">
+                    <thead>
+                        <tr>
+                            <th>Dom</th>
+                            <th>Seg</th>
+                            <th>Ter</th>
+                            <th>Qua</th>
+                            <th>Qui</th>
+                            <th>Sex</th>
+                            <th>Sáb</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for semana in semanas %}
+                        <tr>
+                            {% for dia in semana %}
+                            <td class="{% if dia.eventos %}has-events{% endif %} {% if not dia.do_mes %}other-month{% endif %} {% if dia.hoje %}today{% endif %}">
+                                <div class="day-number">{{ dia.dia }}</div>
+                                {% for evento in dia.eventos %}
+                                <div class="event-item mb-2 p-2 rounded evento-{{ evento.tipo|lower }}">
+                                    <small>
+                                        <strong>{{ evento.nome|truncatechars:15 }}</strong><br>
+                                        {{ evento.data|time:"H:i" }}<br>
+                                        R$ {{ evento.valor_ingresso }}<br>
+                                        <a href="{% url 'eventos:detalhe' evento.pk %}" class="text-white">Detalhes</a>
+                                    </small>
+                                </div>
+                                {% endfor %}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <a href="{% url 'eventos:lista' %}" class="btn btn-secondary mb-2">
+            <i class="fas fa-arrow-left"></i> Voltar para Lista
+        </a>
+        <div class="d-flex gap-2">
+            <a href="?mes={{ mes_anterior|date:'Y-m' }}{% if tipo_selecionado %}&tipo={{ tipo_selecionado }}{% endif %}" class="btn btn-outline-primary btn-no-blue">
+                <i class="fas fa-chevron-left"></i> Mês Anterior
+            </a>
+            <a href="?mes={{ mes_proximo|date:'Y-m' }}{% if tipo_selecionado %}&tipo={{ tipo_selecionado }}{% endif %}" class="btn btn-outline-primary">
+                Próximo Mês <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/eventos/calendario.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.event-item').forEach(function (item) {
+            if (item.textContent.includes('(Passado)')) {
+                item.style.opacity = '0.6';
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+

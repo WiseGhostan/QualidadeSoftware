@@ -1,0 +1,91 @@
+
+.panel {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s ease;
+}
+
+.panel:hover {
+    box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+.panel-header {
+    position: relative; 
+    background-color: #198754;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: 600;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.panel-header h4 {
+    margin: 0; 
+}
+
+.panel-header .dropdown {
+    position: absolute;
+    right: 1.5rem; 
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.panel-body {
+    padding: 1.5rem 1.5rem;
+    text-align: center;
+    color: #444;
+}
+
+.chart-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #eee;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.badge {
+    min-width: 100px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.4em 0.8em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3em;
+}
+
+.table th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9f7ef;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}

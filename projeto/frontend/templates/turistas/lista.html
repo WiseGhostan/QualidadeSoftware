@@ -1,0 +1,45 @@
+{% extends "turistas/base_turistas.html" %}
+
+{% block title %}Lista de Turistas{% endblock %}
+
+{% block content %}
+    <section class="card-list">
+        <h2><i class="fas fa-list-ol"></i> Turistas Cadastrados</h2>
+        
+        <div class="search-add">
+            <form method="get" class="search-form">
+                <input type="text" name="q" placeholder="Buscar turistas...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <table class="turistas-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turista in turistas %}
+                <tr>
+                    <td>{{ turista.nome_completo }}</td>
+                    <td>{{ turista.email }}</td>
+                    <td>{{ turista.telefone }}</td>
+                    <td class="actions">
+                        <a href="{% url 'turistas:detalhe' turista.pk %}" class="btn-sm view"><i class="fas fa-eye"></i></a>
+                        <a href="{% url 'turistas:editar' turista.pk %}" class="btn-sm edit"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'turistas:excluir' turista.pk %}" class="btn-sm delete"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">Nenhum turista cadastrado ainda.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
