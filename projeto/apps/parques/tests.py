@@ -107,3 +107,6 @@ class ParquesViewsTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Parque.objects.filter(id=self.parque.id).exists())
         self.client.logout()
+
+
+

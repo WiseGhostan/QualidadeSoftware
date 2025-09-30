@@ -11,3 +11,4 @@ class MapaViewTest(TestCase):
         url = reverse('mapa:mapa')
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'mapa/mapa.html')
+

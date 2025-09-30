@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from calendar import Calendar
 from django.utils.timezone import now
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def lista_eventos(request):
     eventos = Evento.objects.all()
@@ -116,3 +117,14 @@ def editar_evento(request, pk):
         form = EventoForm(instance=evento)
 
     return render(request, 'eventos/form.html', {'form': form})
+
+@login_required
+def excluir_evento(request, pk):
+    evento = get_object_or_404(Evento, pk=pk)
+    
+    if request.method == 'POST':
+        evento.delete()
+        messages.success(request, 'Evento excluído com sucesso.')
+        return redirect('eventos:lista')
+    
+    return render(request, 'eventos/confirmar_exclusao.html', {'evento': evento})
