@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Minhas Feiras{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/feiras/feiras.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="header-feiras">
+  <h2>Minhas Feiras</h2>
+  <a href="{% url 'feiras:criar_feira' %}" class="btn btn-primary mb-3">Cadastrar nova feira</a>
+</div>
+<ul class="feiras-list">
+  {% for feira in feiras %}
+    <li class="feira-item">
+      <span class="feira-nome">{{ feira.nome }}</span> - <span class="feira-endereco">{{ feira.endereco }}</span>
+      <a href="{% url 'feiras:editar_feira' feira.id %}" class="btn btn-sm btn-warning">Editar</a>
+      <a href="{% url 'feiras:excluir_feira' feira.id %}" class="btn btn-sm btn-danger">Excluir</a>
+    </li>
+  {% empty %}
+    <li>Você ainda não cadastrou nenhuma feira.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+

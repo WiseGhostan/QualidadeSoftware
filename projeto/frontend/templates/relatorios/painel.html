@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/relatorios/painel.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-center mt-4">
+    <h2 class="text-center mb-4">
+        <i class="bi bi-graph-up"></i> Painel de Relatórios
+    </h2>
+
+    <div class="d-flex flex-row flex-wrap justify-content-center gap-4">
+        {% for relatorio in relatorios_disponiveis %}
+        <div class="painel-box text-center">
+            <div class="painel-conteudo">
+                <h5 class="painel-titulo">
+                    <i class="bi bi-{{ relatorio.icone }}"></i> {{ relatorio.nome }}
+                </h5>
+                <p class="painel-texto">Visualize dados detalhados sobre {{ relatorio.nome|lower }}</p>
+                <a href="{{ relatorio.url }}" class="btn btn-primary mt-2">
+                    Acessar <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+

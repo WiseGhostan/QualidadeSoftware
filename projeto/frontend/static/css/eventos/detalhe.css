@@ -1,0 +1,40 @@
+.detalhe-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.detalhe-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.detalhe-card-header {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.detalhe-card-title {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.detalhe-card-body {
+    padding: 20px 10px;
+}
+
+.detalhe-card-text {
+    font-size: 1rem;
+    color: #444;
+}
+
+.detalhe-card-footer {
+    padding: 15px 10px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}

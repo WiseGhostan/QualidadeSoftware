@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/relatorios/graficos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="graficos-container text-center">
+
+    <div class="grafico-header d-flex justify-content-center align-items-center gap-3 mb-4 flex-wrap">
+        <h2 class="mb-0">
+            <i class="bi bi-bar-chart-fill text-primary"></i> {{ titulo }}
+        </h2>
+        {% if user.is_superuser %}
+        <a href="{% url 'login:painel_admin' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left-circle"></i> Voltar
+        </a>
+        {% else %}
+        <a href="{% url 'login:espaco_colaborador' %}" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left-circle"></i> Voltar
+        </a>
+        {% endif %}
+    </div>
+
+    {% for grafico in graficos %}
+    <div class="grafico-bloco shadow-lg mx-auto mb-4" style="max-width: 700px;">
+        <div class="grafico-bloco-header d-flex justify-content-between align-items-center px-3 py-2 bg-primary text-white rounded-top">
+            <h4 class="mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-graph-up"></i> Visualização Gráfica - {{ grafico.titulo }}
+            </h4>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-download"></i> Exportar
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="exportDropdown">
+                    <li><a class="dropdown-item" href="#" onclick="exportChart(this, 'png')">PNG</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="exportTableToXLSX(this)">Excel</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="exportChart(this, 'pdf')">PDF</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="grafico-bloco-body p-3">
+            <div class="chart-container">
+                <img src="data:image/png;base64,{{ grafico.grafico }}" 
+                     alt="Gráfico de Dados" 
+                     class="img-fluid rounded mx-auto d-block">
+            </div>
+        </div>
+    </div>
+
+    <div class="grafico-bloco shadow-lg mx-auto mb-5" style="max-width: 700px;">
+        <div class="grafico-bloco-header bg-primary text-white px-3 py-2 rounded-top">
+            <h4 class="mb-0"><i class="bi bi-table"></i> Dados Numéricos</h4>
+        </div>
+        <div class="grafico-bloco-body p-3">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th width="40%">Categoria</th>
+                            <th width="30%">Visitantes</th>
+                            <th width="30%">Classificação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria, quantidade in grafico.dados %}
+                        <tr>
+                            <td><strong>{{ categoria }}</strong></td>
+                            <td>{{ quantidade|floatformat:0 }}</td>
+                            <td>
+                                {% if quantidade > 10000 %}
+                                <span class="badge bg-success">
+                                    <i class="bi bi-arrow-up-circle"></i> Alto
+                                </span>
+                                {% elif quantidade > 5000 %}
+                                <span class="badge bg-warning text-dark">
+                                    <i class="bi bi-dash-circle"></i> Médio
+                                </span>
+                                {% else %}
+                                <span class="badge bg-danger">
+                                    <i class="bi bi-arrow-down-circle"></i> Baixo
+                                </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center py-4">
+                                <div class="alert alert-info mb-0">
+                                    <i class="bi bi-info-circle-fill"></i> Nenhum dado disponível
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+<script>
+function exportChart(button, format) {
+    const chartContainer = button.closest('.grafico-bloco').querySelector('.chart-container img');
+    if (!chartContainer) {
+        alert('Nenhum gráfico disponível para exportação');
+        return;
+    }
+
+    const link = document.createElement('a');
+    link.href = chartContainer.src;
+    link.download = `relatorio_grafico.${format}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function exportTableToXLSX(button) {
+    const bloco = button.closest('.grafico-bloco').nextElementSibling;
+    const table = bloco.querySelector('table');
+
+    if (!table) {
+        alert('Tabela não encontrada para exportação.');
+        return;
+    }
+
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.table_to_sheet(table);
+    XLSX.utils.book_append_sheet(wb, ws, "Dados");
+
+    XLSX.writeFile(wb, "dados_grafico.xlsx");
+}
+</script>
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+h2 {
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+}
+
+.list-group-item {
+  padding: 16px 20px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.list-group-item a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.list-group-item:hover {
+  background-color: #f1f1f1;
+}
+
+.list-group-item a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}

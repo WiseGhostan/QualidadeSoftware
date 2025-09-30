@@ -1,0 +1,93 @@
+
+.panel {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s ease;
+}
+
+.panel:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.panel-header {
+    background-color: #0d6efd; /* Bootstrap primary blue */
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-weight: 600;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-body {
+    padding: 1.5rem 1.5rem;
+    text-align: center;
+    color: #444;
+}
+
+.chart-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.badge {
+    min-width: 100px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.4em 0.8em;
+}
+
+/* Tabela */
+.table th {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background-color: #343a40; 
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f7ff;
+}
+
+/* Alertas */
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Classificação Visitantes */
+.classificacao-baixa {
+    color: #d9534f;  /* vermelho */
+    font-weight: 600;
+}
+
+.classificacao-media {
+    color: #f0ad4e;  /* amarelo */
+    font-weight: 600;
+}
+
+.classificacao-alta {
+    color: #5cb85c;  /* verde */
+    font-weight: 600;
+}
+

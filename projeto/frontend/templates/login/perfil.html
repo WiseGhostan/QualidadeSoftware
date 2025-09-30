@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %}
+Meu Perfil - DF Turismos
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login/perfil.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="perfil-container">
+  <h2>Meu Perfil</h2>
+  <p><strong>Usuário:</strong> {{ usuario.username }}</p>
+  <p><strong>Email:</strong> {{ usuario.email }}</p>
+
+  <div class="botoes-perfil">
+    <a href="{% url 'login:alterar_senha' %}" class="btn btn-primary">Alterar Senha</a>
+    <a href="{% url 'login:alterar_nome' %}" class="btn btn-warning">Alterar Nome</a>
+    <a href="{% url 'login:alterar_email' %}" class="btn btn-info">Alterar Email</a>
+  </div>
+</div>
+{% endblock %}
+

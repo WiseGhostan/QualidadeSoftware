@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Alterar Nome de Usuário{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Alterar Nome de Usuário</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="novo_nome" class="form-label">Novo Nome de Usuário:</label>
+      <input type="text" id="novo_nome" name="novo_nome" class="form-control" value="{{ request.user.username }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'login:perfil' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

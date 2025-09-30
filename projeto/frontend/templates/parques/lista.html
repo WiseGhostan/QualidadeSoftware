@@ -1,0 +1,90 @@
+{% extends "base_turista.html" %}
+
+{% block title %}Parques do Distrito Federal{% endblock %}
+
+{% block content %}
+<style>
+  .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  .styled-table thead {
+      background-color: #4CAF50;
+      color: white;
+  }
+
+  .styled-table th,
+  .styled-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+  }
+
+  .styled-table tbody tr:hover {
+      background-color: #f1f1f1;
+  }
+
+  h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+  }
+
+  input#searchInput {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+  }
+
+  a {
+      color: #2196F3;
+      text-decoration: none;
+  }
+
+  a:hover {
+      text-decoration: underline;
+  }
+</style>
+
+<h1>Parques do Distrito Federal</h1>
+
+<table id="parquesTable" class="styled-table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Localização</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for parque in parques %}
+        <tr>
+            <td>{{ parque.nome }}</td>
+            <td>{{ parque.endereco }}</td>
+            <td>
+              <a href="https://www.google.com/maps/search/?api=1&query={{ parque.endereco|urlencode }}" target="_blank" rel="noopener noreferrer">
+                Ver no Mapa
+              </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script>
+  document.getElementById('searchInput').addEventListener('keyup', function() {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#parquesTable tbody tr');
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = text.includes(filter) ? '' : 'none';
+    });
+  });
+</script>
+{% endblock %}
+
+

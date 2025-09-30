@@ -1,0 +1,80 @@
+
+.container {
+  max-width: 600px;
+  background: #ffffffcc; 
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  margin-top: 5rem !important;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 1.1px;
+}
+
+p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.list-group {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(44, 62, 80, 0.1);
+}
+
+.list-group-item {
+  background: #f9f9f9;
+  font-weight: 600;
+  color: #34495e;
+  transition: background 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  padding: 18px 25px;
+  font-size: 1.15rem;
+}
+
+.list-group-item + .list-group-item {
+  border-top: 1px solid #ddd;
+}
+
+.list-group-item:hover {
+  background: #2c3e50;
+  color: #fff;
+  transform: translateX(8px);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.list-group-item a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.list-group-item a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin-top: 2rem !important;
+    padding: 20px;
+  }
+
+  .list-group-item {
+    font-size: 1rem;
+    padding: 15px 20px;
+  }
+}

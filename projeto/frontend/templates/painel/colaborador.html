@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Painel do Colaborador{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/painel/painel_colaborador.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Bem-vindo, {{ user.first_name }} Colaborador</h2>
+  <p>Selecione uma das opções abaixo:</p>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a href="{% url 'eventos:form' %}">Cadastrar Eventos</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'relatorios:painel' %}">Visualizar Gráficos</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'feiras:feiras' %}">Cadastrar Feiras</a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
